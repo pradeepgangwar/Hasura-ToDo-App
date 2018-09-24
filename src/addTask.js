@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { Mutation, graphql } from 'react-apollo';
+import { tasksQuery } from './tasks'
 
 const addTaskMutation = gql`
   mutation addTask($task: String! ) {
@@ -22,7 +23,8 @@ const AddTask = ({ mutate }) => {
     if (evt.keyCode === 13) {
       evt.persist();
       mutate({ 
-        variables: { task: evt.target.value }
+        variables: { task: evt.target.value },
+        refetchQueries: [ { query: tasksQuery }],
       })
       .then( res => {
         evt.target.value = '';  

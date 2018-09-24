@@ -5,16 +5,23 @@ import Tasks from './tasks';
 import AddTask from './addTask';
 
 const client = new ApolloClient({
-  uri: "http://localhost:8080/v1alpha1/graphql"
+  uri: "https://hasura-pradeep.herokuapp.com/v1alpha1/graphql"
 });
 
 const App = () => (
   <ApolloProvider client={client}>
     <div>
       <h2>To Do App: Powered by Hasura and Apollo</h2>
+      <hr/>
+    </div>
+    <div>
+      <h3>Pending Tasks</h3>
     </div>
     <AddTask />
     <Tasks />
+    <div>
+      <h3>Tasks Completed </h3>
+    </div>
   </ApolloProvider>
 );
 
