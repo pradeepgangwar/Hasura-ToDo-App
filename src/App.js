@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
-import Tasks from './tasks';
+import PendingTasks from './pendingTasks';
+import CompletedTasks from './completedTasks';
 import AddTask from './addTask';
 
 const client = new ApolloClient({
@@ -18,10 +19,11 @@ const App = () => (
       <h3>Pending Tasks</h3>
     </div>
     <AddTask />
-    <Tasks />
+    <PendingTasks />
     <div>
       <h3>Tasks Completed </h3>
     </div>
+    <CompletedTasks />
   </ApolloProvider>
 );
 

@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Query, graphql } from "react-apollo";
 import gql from "graphql-tag";
-import Task from './task';
+import PendingTask from './pendingTask';
 
-const Tasks = () => (
+const PendingTasks = () => (
   <Query
-    query={tasksQuery}
+    query={pendingTasksQuery}
   >
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
@@ -13,16 +13,19 @@ const Tasks = () => (
 
       return data.tasks.map((task) => (
         <ul>
-          <Task task={task} />
+          <PendingTask task={task} />
         </ul>
       ));
     }}
   </Query>
 );
 
-export const tasksQuery = gql`
+export const pendingTasksQuery = gql`
   query tasksQuery {
-    tasks {
+    tasks(
+      where: { is_completed: {_eq: false}}
+      order_by: task_id_desc
+    ) {
       task_id
       task
       is_completed
@@ -30,6 +33,6 @@ export const tasksQuery = gql`
   }
 `;
 
-export default graphql(tasksQuery, {
+export default graphql(pendingTasksQuery, {
   options: { pollInterval: 5000 },
-})(Tasks);
+})(PendingTasks);
