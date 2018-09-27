@@ -11,11 +11,18 @@ const PendingTasks = () => (
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
 
-      return data.tasks.map((task) => (
-        <ul>
-          <PendingTask task={task} />
-        </ul>
-      ));
+      if (data.tasks.length === 0) {
+        return <ul>
+          Hooray! You have no pending tasks. Grab a cup of coffee and enjoy!
+        </ul>;
+     } else {
+        return data.tasks.map((task) => (
+          <ul>
+            <PendingTask task={task} />
+          </ul>
+        ));
+      }
+
     }}
   </Query>
 );
