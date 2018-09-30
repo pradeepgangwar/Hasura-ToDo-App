@@ -52,8 +52,9 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'pradeep-react.au.auth0.com',
     clientID: '0z9GJlfQ4afLnx26L5YnYPQIklTnf4NM',
-    redirectUri: 'http://localhost:3000/callback',
+    redirectUri: 'https://hasura-todo.herokuapp.com/callback',
     responseType: 'token id_token',
+    scope: 'openid email'
   });
 
   login() {

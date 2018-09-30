@@ -5,8 +5,13 @@ import PendingTasks from './pendingTasks';
 import CompletedTasks from './completedTasks';
 import AddTask from './addTask';
 
+const ACCESS_TOKEN = localStorage.getItem('access_token');
+
 const client = new ApolloClient({
-  uri: "https://hasura-pradeep.herokuapp.com/v1alpha1/graphql"
+  uri: "https://hasura-pradeep.herokuapp.com/v1alpha1/graphql",
+  headers: {
+    'Authorization': `Bearer ${ACCESS_TOKEN}`,
+  }
 });
 
 class Home extends Component {
