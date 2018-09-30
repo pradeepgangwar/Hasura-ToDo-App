@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Auth from './Auth/Auth.js';
 
 class App extends Component {
   goTo(route) {

@@ -27,6 +27,7 @@ export default class Auth {
     let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('sub', authResult.idTokenPayload.sub)
     localStorage.setItem('expires_at', expiresAt);
     // navigate to the home route
     history.replace('/home');
@@ -53,7 +54,6 @@ export default class Auth {
     clientID: '0z9GJlfQ4afLnx26L5YnYPQIklTnf4NM',
     redirectUri: 'http://localhost:3000/callback',
     responseType: 'token id_token',
-    scope: 'openid'
   });
 
   login() {
